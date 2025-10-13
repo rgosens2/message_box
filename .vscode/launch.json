@@ -1,0 +1,15 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug Swift Executable",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${workspaceFolder}/mb5.app/Contents/MacOS/mb5", 
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "preLaunchTask": "Build mb5.app",
+            "stopOnEntry": false
+        }
+    ]
+}

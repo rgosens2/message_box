@@ -1,0 +1,44 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build mb5.app",
+            "type": "shell",
+            "command": "swiftc",
+            "args": [
+                "-g",
+                "-Onone",
+                "-framework", "Cocoa",
+                "mb5.swift",
+                "-o", "mb5.app/Contents/MacOS/mb5"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Run mb5.app",
+            "type": "shell",
+            "command": "open",
+            "args": [
+                "mb5.app"
+            ],
+            "dependsOn": "Build mb5.app",
+            "group": "test",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            }
+        }
+    ]
+}
