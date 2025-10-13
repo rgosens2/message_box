@@ -5,6 +5,9 @@
 // Or do a re-implementation in Swift of our sorting algos.
 // Eventually we will have to switch to Metal for graphics.
 // And start a career as a game developer.
+// NOTE: When uploading to GitHub, if you get a HTTP 400 error, try this:
+// git config --global http.postBuffer 157286400
+// See: https://stackoverflow.com/questions/77856025/git-error-rpc-failed-http-400-curl-22-the-requested-url-returned-error-400-se
 import Cocoa
 import AVFoundation
 import Foundation
