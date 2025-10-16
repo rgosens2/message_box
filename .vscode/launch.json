@@ -5,10 +5,10 @@
             "name": "Debug Swift Executable",
             "type": "lldb",
             "request": "launch",
-            "program": "${workspaceFolder}/mb5.app/Contents/MacOS/mb5", 
+            "program": "${workspaceFolder}/mb7.app/Contents/MacOS/mb7", 
             "args": [],
             "cwd": "${workspaceFolder}",
-            "preLaunchTask": "Build mb5.app",
+            "preLaunchTask": "Build mb7.app",
             "stopOnEntry": false
         }
     ]

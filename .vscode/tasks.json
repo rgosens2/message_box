@@ -2,15 +2,15 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Build mb5.app",
+            "label": "Build mb7.app",
             "type": "shell",
             "command": "swiftc",
             "args": [
                 "-g",
                 "-Onone",
                 "-framework", "Cocoa",
-                "mb5.swift",
-                "-o", "mb5.app/Contents/MacOS/mb5"
+                "${fileBasenameNoExtension}.swift",
+                "-o", "${fileBasenameNoExtension}.app/Contents/MacOS/${fileBasenameNoExtension}"
             ],
             "group": {
                 "kind": "build",
@@ -25,13 +25,13 @@
             "problemMatcher": []
         },
         {
-            "label": "Run mb5.app",
+            "label": "Run mb7.app",
             "type": "shell",
             "command": "open",
             "args": [
-                "mb5.app"
+                "mb7.app"
             ],
-            "dependsOn": "Build mb5.app",
+            "dependsOn": "Build mb7.app",
             "group": "test",
             "presentation": {
                 "echo": true,
