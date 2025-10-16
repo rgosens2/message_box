@@ -373,7 +373,9 @@ func createNextBox() {
 
     // Move position
     //x += 15
+
     // Wrap around if needed
+    // Left to right, bottom to top
     if (x > screenFrame.width) {
         x = 0
         y += boxHeight
@@ -383,6 +385,19 @@ func createNextBox() {
     } else {
         x += 5
     }
+
+    // Top to bottom, left to right
+    // if (y < getDockHeight() - boxHeight) {
+    //     y = screenFrame.height - boxHeight
+    //     x += boxWidth
+    //     if (x + boxWidth > screenFrame.width) {
+    //         x = 0
+    //     }
+    // } else {
+    //     y -= 2
+    // }
+
+    // Or use the random movement generator
     //(x, y) = generator.nextPosition()
 
     // Move the message box
