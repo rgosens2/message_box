@@ -112,6 +112,65 @@ func getFPS(autoPrint: Bool = true) -> Double {
 }
 
 
+// ----------------------- Random movement generator -----------------------
+// Combines circular, snake-like, and random jitter movements
+// to produce smooth but unpredictable paths on screen.
+// Usage: call nextPosition() to get the next (x, y) coordinates.
+struct RandomMovementGenerator {
+    let screenFrame: CGRect
+    var t: Double = 0
+    var snakeDirectionX = 1
+    var snakeDirectionY = 1
+    var snakeX: CGFloat
+    var snakeY: CGFloat
+    let circleRadius: CGFloat
+    let speed: Double
+    let randomness: CGFloat   // max random jitter per step
+
+    init(circleRadius: CGFloat = 100, speed: Double = 0.05, randomness: CGFloat = 10) {
+        self.screenFrame = NSScreen.main!.visibleFrame
+        self.circleRadius = circleRadius
+        self.speed = speed
+        self.randomness = randomness
+        self.snakeX = screenFrame.minX
+        self.snakeY = screenFrame.minY
+    }
+
+    mutating func nextPosition() -> (CGFloat, CGFloat) {
+        // --- Circle component ---
+        let cx = screenFrame.midX
+        let cy = screenFrame.midY
+        let circleX = cx + circleRadius * CGFloat(cos(t))
+        let circleY = cy + circleRadius * CGFloat(sin(t))
+        t += speed
+
+        // --- Snake component ---
+        let step: CGFloat = 5
+        snakeX += CGFloat(snakeDirectionX) * step
+        if snakeX >= screenFrame.maxX - 100 { snakeDirectionX = -1; snakeY += CGFloat(snakeDirectionY) * step }
+        if snakeX <= screenFrame.minX { snakeDirectionX = 1; snakeY += CGFloat(snakeDirectionY) * step }
+        if snakeY >= screenFrame.maxY - 100 { snakeDirectionY = -1 }
+        if snakeY <= screenFrame.minY { snakeDirectionY = 1 }
+
+        // --- Random jitter ---
+        let jitterX = CGFloat.random(in: -randomness...randomness)
+        let jitterY = CGFloat.random(in: -randomness...randomness)
+
+        // --- Combine all movements ---
+        let x = (circleX + snakeX) / 2 + jitterX
+        let y = (circleY + snakeY) / 2 + jitterY
+
+        // Clamp to screen
+        let clampedX = min(max(x, screenFrame.minX), screenFrame.maxX - 100)
+        let clampedY = min(max(y, screenFrame.minY), screenFrame.maxY - 100)
+
+        return (clampedX, clampedY)
+    }
+}
+
+var generator = RandomMovementGenerator(circleRadius: 600, speed: 0.05, randomness: 15)
+
+
 // Pause to allow debugger attach
 // NOTE: not necessary: we forgot to build with -g -Onone
 //print("Waiting for debugger attach...")
@@ -324,6 +383,7 @@ func createNextBox() {
     } else {
         x += 5
     }
+    //(x, y) = generator.nextPosition()
 
     // Move the message box
     BoxWindow.shared?.move(to: x, y: y, animated: true)
