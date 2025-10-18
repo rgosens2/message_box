@@ -61,7 +61,7 @@ func playTone(frequency: Double, duration: Double) {
     }
 }
 
-
+// ----------------------- Dock height detection -----------------------
 func getDockHeight() -> CGFloat {
     guard let screen = NSScreen.main else { return 0 }
 
