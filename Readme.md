@@ -3,6 +3,8 @@ message_box
 
 A Swift/Cocoa demo app.
 
-https://github.com/user-attachments/assets/c3b83073-de7a-4ef5-bfbf-104c0d74b326 <br><br>
+https://github.com/user-attachments/assets/89e3b7f2-5b84-4051-a276-cc8703cb5b6f
+
+<br><br>
 
 ![Screenshot](screenshot.png)
